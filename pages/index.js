@@ -4,20 +4,10 @@ import Footer from '@components/Footer'
 
 export default function Home() {
   return (
-    <div className="container">
-      <Head>
-        <title>Next.js Starter!</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main>
-        <Header title="Welcome to my app!" />
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-      </main>
-
-      <Footer />
+    <div style={{ textAlign: 'center', marginTop: '100px' }}>
+      <h1>🦷 Dentist Dashboard</h1>
+      <p>Hey there! Let’s manage some patient data 😎</p>
     </div>
-  )
+  );
 }
+
