@@ -1,60 +1,40 @@
-import Head from 'next/head'
-import Header from '@components/Header'
-import Footer from '@components/Footer'
-
 // pages/index.js
-import React from "react";
+import Link from "next/link";
+import { records } from "../data/records";
 
-export default function Home() {
-  // your sample data (can come from DB or API later)
-  const records = [
-    { id: 1, name: "John Doe", treatment: "Root Canal" },
-    { id: 2, name: "Sarah Lee", treatment: "Teeth Whitening" },
-    { id: 3, name: "Mark Patel", treatment: "Cavity Filling" },
-  ];
-
+export default function ListReport() {
   return (
     <div style={styles.container}>
-      <h1 style={styles.heading}>🦷 Patient Records</h1>
-
-      <ul style={styles.list}>
-        {records.map((rec) => (
-          <li key={rec.id} style={styles.card}>
-            <h3>{rec.name}</h3>
-            <p>{rec.treatment}</p>
-          </li>
-        ))}
-      </ul>
+      <h1 style={styles.heading}>🦷 Patient List</h1>
+      <table style={styles.table}>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Treatment</th>
+            <th>Age</th>
+          </tr>
+        </thead>
+        <tbody>
+          {records.map((rec) => (
+            <tr key={rec.id}>
+              <td>
+                <Link href={`/record/${rec.id}`}>
+                  <a style={styles.link}>{rec.name}</a>
+                </Link>
+              </td>
+              <td>{rec.treatment}</td>
+              <td>{rec.age}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
 
-// just some inline styles to make it look neat
 const styles = {
-  container: {
-    fontFamily: "system-ui, sans-serif",
-    padding: "2rem",
-    background: "#f8f9fa",
-    minHeight: "100vh",
-  },
-  heading: {
-    textAlign: "center",
-    color: "#333",
-  },
-  list: {
-    listStyle: "none",
-    padding: 0,
-    marginTop: "2rem",
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
-    gap: "1rem",
-  },
-  card: {
-    background: "white",
-    borderRadius: "12px",
-    padding: "1rem",
-    boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-  },
+  container: { padding: "2rem", fontFamily: "system-ui, sans-serif" },
+  heading: { textAlign: "center" },
+  table: { width: "100%", borderCollapse: "collapse", marginTop: "2rem" },
+  link: { color: "#0070f3", textDecoration: "underline", cursor: "pointer" },
 };
-
-
